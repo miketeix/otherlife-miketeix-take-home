@@ -1,13 +1,11 @@
-import CTA from '@/components/CTA';
-import GradientWrapper from '@/components/GradientWrapper';
-import Hero from '@/components/Hero';
+import Hash from '@/components/Hash';
+import GenerateDalleImage from '@/components/GenerateDalleImage';
 
 export default function Home() {
   return (
     <>
-      <Hero />
-      <GradientWrapper></GradientWrapper>
-      <CTA />
+      <Hash/>
+      <GenerateDalleImage/>
     </>
   );
 }
