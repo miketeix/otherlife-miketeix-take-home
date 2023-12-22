@@ -128,13 +128,7 @@ const GenerateDalleImage = ({}: {}) => {
         <div className="col-span-full">
           {imageUrl && (
             <>
-              <p className="mb-2">Hashed Output</p>
-              <Textarea
-                  className="resize-none"
-                >
-                {imageUrl}
-                </Textarea>
-
+              <a href={imageUrl} download>Download Image</a>
              </>
           )}
         </div>

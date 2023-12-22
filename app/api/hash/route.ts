@@ -1,19 +1,7 @@
-import { replicateClient } from '@/utils/ReplicateClient';
 import { HashRequest, HashResponse } from '@/utils/service';
 var shajs = require('sha.js')
 import { NextRequest } from 'next/server';
-// import { Ratelimit } from '@upstash/ratelimit';
-import { kv } from '@vercel/kv';
-import { put } from '@vercel/blob';
-import { nanoid } from '@/utils/utils';
-import { Hash } from 'crypto';
 
-/**
- * Validates a request object.
- *
- * @param {QrGenerateRequest} request - The request object to be validated.
- * @throws {Error} Error message if URL or prompt is missing.
- */
 
 const validateRequest = (request: HashRequest) => {
   if (!request.hashInput) {

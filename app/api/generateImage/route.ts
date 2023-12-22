@@ -2,9 +2,9 @@ import { ImagePromptRequest, ImagePromptResponse } from '@/utils/service';
 import { NextRequest } from 'next/server';
 import { put } from '@vercel/blob';
 import { base64ToFile } from 'file64';
-var shajs = require('sha.js')
-import OpenAI from 'openai';
+import { nanoid } from '@/utils/utils';
 
+import OpenAI from 'openai';
 const openai = new OpenAI({
   apiKey: process.env['OPENAI_API_KEY']
 });
@@ -30,20 +30,20 @@ export async function POST(request: NextRequest) {
   const { prompt } = reqBody;
 
   const openAIresponse = await openai.images.generate({ model: "dall-e-3", prompt, response_format: "b64_json" });
-  const { b64_json } = openAIresponse.data;
+  const [{ b64_json }] = openAIresponse.data; 
 
-  
+  // Todo: Extract blob from json (after decoding)
 
-const file = await base64ToFile(b64_json, 'file.txt');
-
-  const { url } = await put(`${id}.png`, file, { access: 'public' });
+  const file = await base64ToFile(b64_json || '', 'file.txt');
+  const imageId = nanoid();
+  const { url: imgUrl } = await put(`${imageId}.png`, file, { access: 'public' });
 
 
 
   // store on blob
   
   const response: ImagePromptResponse = {
-    imgUrl: 'yo'
+    imgUrl
   };
 
   return new Response(JSON.stringify(response), {
