@@ -15,7 +15,7 @@ const validateRequest = (request: ImagePromptRequest) => {
   }
 };
 
-
+export const runtime = 'edge'; 
 export async function POST(request: NextRequest) {
   const reqBody = (await request.json()) as ImagePromptRequest;
   try {
