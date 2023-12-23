@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
   }
 
   const { hashInput } = reqBody;
-  const hashedOutput = shajs('sha256').update(hashInput).digest('utf8');
+  const hashedOutput = shajs('sha256').update(hashInput).digest('base64');
   
   const response: HashResponse = {
     hash: hashedOutput
